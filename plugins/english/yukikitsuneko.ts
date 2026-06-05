@@ -10,7 +10,7 @@ class Yukikitsuneko implements Plugin.PluginBase {
   name = 'Yuki Kitsuneko';
   icon = 'src/en/yukikitsuneko/logo.png';
   site = 'https://yukikitsuneko.blogspot.com/';
-  version = '1.2.6';
+  version = '1.2.7';
   filters: Filters | undefined = undefined;
   imageRequestInit: Plugin.ImageRequestInit | undefined = undefined;
 
@@ -63,7 +63,7 @@ class Yukikitsuneko implements Plugin.PluginBase {
     const loadedCheerio = loadCheerio(body);
 
     // Get novel details
-    const novelName = loadedCheerio('h1.text-info').text().trim();
+    const novelName = loadedCheerio('h1.card-title').text().trim();
     const novel: Plugin.SourceNovel = {
       path: novelPath,
       name: novelName,
