@@ -62,7 +62,7 @@
       "customJs": {
         "chapterTransform": "custom/cherrymistcafe/chapterTransform.js"
       },
-      "versionIncrements": 1,
+      "versionIncrements": 2,
       "browsePage": "stories"
     }
   }

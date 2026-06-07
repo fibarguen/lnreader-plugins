@@ -118,13 +118,18 @@ export class FictioneerPlugin implements Plugin.PluginBase {
             .includes('fa-lock'),
       )
       .map((i, el) => {
-        const chapterName = loadedCheerio(el).find('a').text();
+        const chapterName = loadedCheerio(el).find('a').text().trim();
         const chapterUrl = loadedCheerio(el).find('a').attr('href');
+        const chapterDate = loadedCheerio(el)
+          .find('time span.list-view')
+          .text()
+          .trim();
 
         if (!chapterUrl) return;
         return {
           name: chapterName,
           path: new URL(chapterUrl, this.site).pathname.substring(1),
+          releaseTime: chapterDate,
         };
       })
       .toArray();
