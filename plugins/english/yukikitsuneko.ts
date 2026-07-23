@@ -10,7 +10,7 @@ class Yukikitsuneko implements Plugin.PluginBase {
   name = 'Yuki Kitsuneko';
   icon = 'src/en/yukikitsuneko/logo.png';
   site = 'https://yukikitsuneko.blogspot.com/';
-  version = '1.2.7';
+  version = '1.2.8';
   filters: Filters | undefined = undefined;
   imageRequestInit: Plugin.ImageRequestInit | undefined = undefined;
 
@@ -68,14 +68,16 @@ class Yukikitsuneko implements Plugin.PluginBase {
       path: novelPath,
       name: novelName,
       cover: loadedCheerio('.col-12 img').attr('src') || defaultCover,
-      artist: 'Unknown',
     };
 
     novel.genres = loadedCheerio('dd.col-sm-9:nth-child(2)').text().trim();
     novel.author = loadedCheerio('dd.col-sm-9:nth-child(6)').text().trim();
+    const status = loadedCheerio('dd.col-sm-9:nth-child(10)')
+      .text()
+      .trim()
+      .toLowerCase();
     novel.status =
-      loadedCheerio('dd.col-sm-9:nth-child(10)').text().trim().toLowerCase() ===
-      'on-going'
+      status === 'on-going' || status === 'ongoing'
         ? NovelStatus.Ongoing
         : NovelStatus.Completed;
 
